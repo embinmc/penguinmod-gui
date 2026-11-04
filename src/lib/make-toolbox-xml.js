@@ -622,22 +622,9 @@ const control = function (isInitialSetup, isStage, targetId, colour) {
             </value>
         </block>
         ${blockSeparator}
-        <block type="control_expandableIf">
-            <field name="EXPANDABLE">1</field>
-            <value name="BOOL1">
-                <shadow type="checkbox" />
-            </value>
-        </block>
-        <block type="control_expandableIf">
-            <field name="EXPANDABLE">2</field>
-            <value name="BOOL1">
-                <shadow type="checkbox" />
-            </value>
-        </block>
+        <block type="control_if" />
+        <block type="control_if_else" />
         <block type="control_if_return_else_return" inline="false">
-            <value name="boolean">
-                <shadow type="checkbox" />
-            </value>
             <value name="TEXT1">
                 <shadow type="text">
                     <field name="TEXT">${apple}</field>
@@ -954,6 +941,54 @@ const operators = function (isInitialSetup, isStage, targetId, colour) {
         id="operators"
         colour="${colour}"
         secondaryColour="#00000044">
+        <block type="operator_add">
+            <value name="NUM1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_subtract">
+            <value name="NUM1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_multiply">
+            <value name="NUM1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_divide">
+            <value name="NUM1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="NUM2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
         <block type="operator_expandableMath">
             <field name="EXPANDABLE">2</field>
             <value name="NUM1">
@@ -962,62 +997,6 @@ const operators = function (isInitialSetup, isStage, targetId, colour) {
                 </shadow>
             </value>
             <field name="OP2">+</field>
-            <value name="NUM2">
-                <shadow type="math_number">
-                    <field name="NUM">2</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="operator_expandableMath">
-            <field name="EXPANDABLE">2</field>
-            <value name="NUM1">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <field name="OP2">-</field>
-            <value name="NUM2">
-                <shadow type="math_number">
-                    <field name="NUM">2</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="operator_expandableMath">
-            <field name="EXPANDABLE">2</field>
-            <value name="NUM1">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <field name="OP2">*</field>
-            <value name="NUM2">
-                <shadow type="math_number">
-                    <field name="NUM">2</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="operator_expandableMath">
-            <field name="EXPANDABLE">2</field>
-            <value name="NUM1">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <field name="OP2">/</field>
-            <value name="NUM2">
-                <shadow type="math_number">
-                    <field name="NUM">2</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="operator_expandableMath">
-            <field name="EXPANDABLE">2</field>
-            <value name="NUM1">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <field name="OP2">^</field>
             <value name="NUM2">
                 <shadow type="math_number">
                     <field name="NUM">2</field>
@@ -1163,26 +1142,8 @@ const operators = function (isInitialSetup, isStage, targetId, colour) {
             <field name="CHECKBOX">FALSE</field>
         </block>
         ${blockSeparator}
-        <block type="operator_expandableBool">
-            <field name="EXPANDABLE">2</field>
-            <value name="BOOL1">
-                <shadow type="checkbox" />
-            </value>
-            <field name="OP2">a</field>
-            <value name="BOOL2">
-                <shadow type="checkbox" />
-            </value>
-        </block>
-        <block type="operator_expandableBool">
-            <field name="EXPANDABLE">2</field>
-            <value name="BOOL1">
-                <shadow type="checkbox" />
-            </value>
-            <field name="OP2">o</field>
-            <value name="BOOL2">
-                <shadow type="checkbox" />
-            </value>
-        </block>
+        <block type="operator_and"/>
+        <block type="operator_or"/>
         <block type="operator_expandableBool">
             <field name="EXPANDABLE">2</field>
             <value name="BOOL1">
@@ -1328,6 +1289,35 @@ const _strings = function() {
             <value name="INPUT2">
                 <shadow type="text">
                     <field name="TEXT">${banana}</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_join">
+            <value name="STRING1">
+                <shadow type="text">
+                    <field name="TEXT">${apple}</field>
+                </shadow>
+            </value>
+            <value name="STRING2">
+                <shadow type="text">
+                    <field name="TEXT">${banana}</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_join3">
+            <value name="STRING1">
+                <shadow type="text">
+                    <field name="TEXT">${apple}</field>
+                </shadow>
+            </value>
+            <value name="STRING2">
+                <shadow type="text">
+                    <field name="TEXT">${banana}</field>
+                </shadow>
+            </value>
+            <value name="STRING3">
+                <shadow type="text">
+                    <field name="TEXT">${pear}</field>
                 </shadow>
             </value>
         </block>
