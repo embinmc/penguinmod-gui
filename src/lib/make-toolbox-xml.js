@@ -624,6 +624,7 @@ const control = function (isInitialSetup, isStage, targetId, colour) {
         ${blockSeparator}
         <block type="control_if" />
         <block type="control_if_else" />
+        <block type="control_expandableIf" />
         <block type="control_if_return_else_return" inline="false">
             <value name="TEXT1">
                 <shadow type="text">
@@ -1135,12 +1136,8 @@ const operators = function (isInitialSetup, isStage, targetId, colour) {
             </value>
         </block>
         ${blockSeparator}
-        <block type="operator_checkboxBoolean">
-            <field name="CHECKBOX">TRUE</field>
-        </block>
-        <block type="operator_checkboxBoolean">
-            <field name="CHECKBOX">FALSE</field>
-        </block>
+        <block type="operator_trueBoolean"/>
+        <block type="operator_falseBoolean"/>
         ${blockSeparator}
         <block type="operator_and"/>
         <block type="operator_or"/>
