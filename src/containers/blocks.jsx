@@ -121,6 +121,7 @@ class Blocks extends React.Component {
             'handleCustomProceduresClose',
             'handleCategoryReorder',
             'handlePinCallback',
+            'handlePublishGlobalProcMutations',
             'handleBeforeEditCustomProcedure',
             'onScriptGlowOn',
             'onScriptGlowOff',
@@ -441,6 +442,7 @@ class Blocks extends React.Component {
         this.props.vm.addListener('PERIPHERAL_DISCONNECTED', this.handleStatusButtonUpdate);
 
         this.props.vm.runtime.addListener("RUNTIME_DISPOSED", this.onProjectDispose);
+        this.props.vm.runtime.addListener("PUBLISH_GLOBAL_PROCS", this.handlePublishGlobalProcMutations);
     }
     detachVM () {
         this.props.vm.removeListener('SCRIPT_GLOW_ON', this.onScriptGlowOn);
@@ -457,6 +459,7 @@ class Blocks extends React.Component {
         this.props.vm.removeListener('PERIPHERAL_DISCONNECTED', this.handleStatusButtonUpdate);
 
         this.props.vm.runtime.removeListener("RUNTIME_DISPOSED", this.onProjectDispose);
+        this.props.vm.runtime.removeListener("PUBLISH_GLOBAL_PROCS", this.handlePublishGlobalProcMutations);
     }
 
     updateToolboxBlockValue (id, value) {
@@ -832,6 +835,13 @@ class Blocks extends React.Component {
         const toolboxXML = this.getToolboxXML();
         if (toolboxXML) {
             this.props.updateToolboxState(toolboxXML);
+        }
+    }
+    handlePublishGlobalProcMutations (mutations) {
+        const globalProcMap = this.ScratchBlocks.Procedures.GLOBAL_BLOCKS;
+        for (const mutation of mutations) {
+            const parsedMutation = this.ScratchBlocks.Xml.textToDom(mutation.textContent);
+            globalProcMap.set(mutation.proccode, parsedMutation);
         }
     }
     handleBeforeEditCustomProcedure (block) {
